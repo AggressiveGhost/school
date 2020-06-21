@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  {% load static %}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="{% static 'css/testing.css' %}">
+
+
+
+
+</head>
+
+<body>
+
+  <div class="subjects">
+
+    <div class="timer">
+      <span class="rest_time">Cізде уақыт қалды:</span> </br>
+      <span id="time">{{hours}} : {{minutes}} : {{seconds}}</span>
+    </div>
+
+    {% for subject in subjects %}
+    <form method='POST' class="subject_form" action="{% url 'testing_page' grade student %}">
+      {% csrf_token %}
+      <input type="hidden" name="hidden_id" class="hidden_id" value="">
+      <input type="hidden" name="hidden_answer" class="hidden_answer" value="">
+      <button class="subject_button" name="selected_subject" type="submit"
+        value="{{subject.id}}">{{subject.subject}}</button>
+      <!-- <input type="subject" name="selected_subject"  id="" value="{{subject.subject}}"> -->
+    </form>
+
+
+    {% endfor %}
+
+  </div>
+
+  <a class="closeBtn" href="{{variant_of_subject.get_absolute_url}}" id="{{variant_of_subject.id}}"></a>
+
+  <div id="posts" class="posts">
+
+    {% for question in first_page %}
+    <!-- <h1>{{question.id}}</h1> -->
+    <div style="width: 100%;">
+      <img src="{{question.question.url}}" style="max-width: 100%; max-height: 300px;" class="question_photo"
+        alt="Star">
+    </div>
+    <textarea name="name" id='{{question.id}}' class="answer_question" rows="8" cols="80"></textarea>
+    {% endfor %}
+
+  </div>
+  <!-- <button onclick="myFunction()"> Submit</button> -->
+
+
+  <div class="links">
+
+    {% for item in filled_answers %}
+    {% if item.answer %}
+    <li><a href="{{item.page}}" id={{item.id_answer}} class="filled">{{item.page}}</a></li>
+    {% else %}
+    <li><a href="{{item.page}}" id={{item.id_answer}} class="unfilled">{{item.page}}</a></li>
+    {% endif %}
+    {% endfor %}
+
+  </div>
+
+  <form id="loginForm" name="loginForm" method="POST" style="text-align: center;" action="{% url 'deadline' %}">
+    {% csrf_token %}
+    {% for question in first_page %}
+    <input type="hidden" id="last_question" name="last_question" value="{{question.id}}">
+    {% endfor %}
+    <input type="hidden" id="last_answer" name="last_answer" value="">
+    <input type="hidden" name="student_deadline_id" value="{{student}}">
+    <input type="submit" id="loginSubmit" value="Тестты бітіру" />
+
+  </form>
+
+
+
+  </br>
+
+
+  <input type="hidden" name="hidden_time" id="hidden_time" class="hidden_time" value="False">
+  <input type="hidden" name="student_id" id="student_id" value="{{student}}">
+
+  <!-- <p id="demo"></p>
+  Second pass: <span id="count">-1</span> -->
+
+  <!-- {% for i in page_range %}
+  <a href="{{i}}">{{i}}</a>
+  {% endfor %} -->
+
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+
+  <script>
+    $(document).ready(function () {
+
+    });
+  </script>
+
+  <script type="text/javascript">
+    var id = setInterval("MyFunct_1()", 1000)
+
+    function MyFunct_1() {
+      time = document.getElementById("time").innerText
+      time = time.split(":")
+
+
+      hours = parseInt(time[0])
+      minutes = parseInt(time[1])
+      seconds = parseInt(time[2])
+      // console.log(hours + ":" + minutes + ":" + seconds)
+
+      seconds--;
+
+      if (minutes <= 0 && seconds < 0) {
+        hours -= 1;
+        minutes = 60;
+      }
+      if (seconds < 0) {
+        // if (!minutes <= 0) {
+        //   minutes -= 1;
+        // }
+        minutes -= 1;
+        seconds = 59;
+
+      }
+
+      endtime = document.getElementById("time").innerText;
+      if (endtime == "0 : 0 : 0") {
+        document.getElementById("hidden_time").value = "True";
+        document.forms['loginForm'].submit();
+      }
+      document.getElementById("time").innerHTML = hours + " : " + minutes + " : " + seconds;
+    }
+  </script>
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      answer = document.getElementsByClassName("answer_question")
+      // console.log(answer)
+
+      $(document).on('input', '.answer_question', function () {
+        var elem = $(".answer_question");
+        if (answer[0].value != "") {
+          document.getElementById("last_answer").value = answer[0].value;
+          collection = document.getElementsByClassName("hidden_answer");
+          Array.from(collection).forEach(function (element) {
+            element.value = answer[0].value;
+          });
+          collection_2 = document.getElementsByClassName("hidden_id");
+          Array.from(collection_2).forEach(function (item) {
+            item.value = elem.attr('id');
+          });
+          // alert(elem.attr('id'));
+        }
+        // console.log(answer[0].value)
+      });
+    });
+  </script>
+
+
+  <script>
+    $('a').click(function (event) {
+      event.preventDefault();
+      var page_n = $(this).attr('href');
+      // console.log(page_n);
+      var answers = [];
+      var indexes = [];
+      var index = 0;
+      var question;
+      var filled_answer = -1;
+      var current_question = $(this).attr('id');
+      var previous_question = $(".answer_question").attr('id');
+      var student_id = document.getElementById("student_id").value;
+
+      endtime = document.getElementById("hidden_time").value;
+
+      if (endtime == "True") {
+        document.forms['loginForm'].submit();
+      }
+
+
+      var textareaList = document.getElementsByTagName("textarea");
+      for (var i = 0; i < textareaList.length; i++) {
+        var index = textareaList[i].id;
+        console.log("index=" + index)
+
+        indexes.push(index);
+        answers.push(textareaList[i].value);
+
+        if (textareaList[i].value != "") {
+          filled_answer = index;
+        }
+        //DO SOMETHING
+      }
+      console.log(answers)
+
+      // ajax
+      $.ajax({
+        type: "POST",
+        url: $('.closeBtn').attr("href"), // name of url
+        data: {
+          page_n: page_n, //page_number
+          indexes: JSON.stringify(indexes),
+          answers: JSON.stringify(answers),
+          traditional: true,
+          csrfmiddlewaretoken: '{{ csrf_token }}',
+        },
+        success: function (resp) {
+          console.log('success')
+          //loop
+          $('#posts').html('')
+          console.log("student_id = " + student_id);
+          $.each(resp, function (i, val) {
+            response = val
+            console.log("id = " + response.id)
+            //apending posts
+
+            // $('#posts').append(
+            // '<h1>' +  val.trueanswer +  '</h1>' + '\n' +
+            // '<img src=' + val.question  +' alt="Star" width="200" height="200">' + '\n'
+            // + '<textarea name="name" id="asnwer-' + val.id +'+" rows="8" cols="80"></textarea>'
+            // )
+          });
+          $.ajax({
+            type: "POST",
+            url: "{% url 'serial_answers' %}", // name of url
+            data: {
+
+              question_id: JSON.stringify(response.id),
+              student_id: student_id,
+              traditional: true,
+              csrfmiddlewaretoken: '{{ csrf_token }}',
+            },
+            success: function (resp2) {
+
+              console.log("previous = " + previous_question)
+              console.log("current = " + current_question)
+              document.getElementById(previous_question).style.border = "1px solid #BDBDBD";
+              document.getElementById(current_question).style.border = "2px solid #0000FF";
+
+              //loop
+              $('#posts').html('')
+              console.log('val = ' + resp)
+
+              // document.getElementsByClassName(String(page_n)).style.backgroundColor = "blue";
+
+              if (filled_answer != -1) {
+                console.log(typeof filled_answer.toString());
+                document.getElementById(String(filled_answer)).className = "filled";
+              }
+
+              $.each(resp2, function (i, val) {
+
+                console.log("yes =")
+                $('#posts').append(
+                  // '<h1>' + val.question + '</h1>' + '\n' +
+                  '<div style="width: 100%;"> <img src=' + response.question +
+                  ' alt="Star" class="question_photo"  style="max-width: 100%; max-height: 300px;"> </div>' +
+                  '<textarea name="name" id="' + val.question +
+                  '"class="answer_question" rows="8" cols="80">' + val.answer + '</textarea>'
+
+
+                )
+                // document.getElementById("question_photo").src = response.question;
+                // document.getElementById("answer_question").value = val.answer;
+
+              });
+
+
+            },
+            error: function () {
+              console.log('error')
+            }
+          });
+
+        },
+        error: function () {
+          console.log('error')
+        }
+      }); //
+
+    });
+  </script>
+
+
+</body>
+
+</html>

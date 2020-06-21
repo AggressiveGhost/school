@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  {% if student %}
+    {{student.name}}
+    <img src="{{student.documents.url}}" alt="" width="200" height="200">
+  {% else %}
+    <p>No student</p>
+  {% endif %}
+
+  {% if question %}
+    {{question.trueanswer}}
+    <img src="{{question.question.url}}" alt="" width="200" height="200">
+  {% else %}
+    <p>No question</p>
+  {% endif %}
+</body>
+</html>

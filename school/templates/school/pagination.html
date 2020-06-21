@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <!-- <div class="pagination">
+    {{questions.has_previous}}
+
+    {{questions.number}}
+
+    {{questions.paginator.count}}
+
+    {{questions.paginator.num_pages}}
+
+    {{questions.paginator.page_range}}
+
+    {{questions.has_next}}
+
+  </div> -->
+  <div class="pagination">
+
+    {% if questions.has_previous %}
+      <a href="?page={{questions.previous_page_number}}">previous</a>
+    {% else %}
+      <a href="?page=1">first</a>
+    {% endif %}
+
+    {% for num in questions.paginator.page_range%}
+      {% if questions.number == num %}
+        <strong>{{num}}</strong>
+      {% elif num > questions.number|add:'-3' and num < questions.number|add:'3' %}
+        <!-- {{num}} -->
+        <a href="?page={{num}}">{{num}}</a>
+      {% endif %}
+    {% endfor %}
+
+    {% if questions.has_next %}
+      <!-- <a href="?page={{questions.next_page_number}}">next</a> -->
+      <a href="?page={{questions.paginator.num_pages}}">last</a>
+    {% endif %}
+  </div>
+
+  {% if questions %}
+    {% for question in questions.object_list %}
+      <h1>{{question.trueanswer}}</h1>
+      <img src="{{question.question.url}}" alt="Star" width="200" height="200">
+      <textarea name="" id="" cols="80" rows="8"></textarea>
+    {% endfor %}
+  {% else %}
+    <h1>no questions</h1>
+  {% endif %}
+</body>
+</html>

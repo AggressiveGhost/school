@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<!-- {% load static %} -->
+	<meta charset="utf-8">
+	<title>input</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+		integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+		integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
+	</script>
+
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+	</script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+		integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+	</script>
+
+	<link rel="stylesheet" type="text/css" href="static/css/input.css">
+	<link rel="stylesheet" type="text/css" href="static/vendor/bootstrap/css/bootstrap.min.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="static/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="static/fonts/iconic/css/material-design-iconic-font.min.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="static/vendor/animate/animate.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="static/vendor/css-hamburgers/hamburgers.min.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="static/vendor/animsition/css/animsition.min.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="static/vendor/select2/select2.min.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="static/vendor/daterangepicker/daterangepicker.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="static/css/sign_in_util.css">
+	<link rel="stylesheet" type="text/css" href="static/css/sign_in_main.css">
+	<!--===============================================================================================-->
+</head>
+
+<body class="m-t-100">
+	{% if invaliddate %}
+	<!-- <div id="Error_message" style="text-align: center; background:#D8D9DB; display:block;"> -->
+	<!-- <span style="font-size: 18px; font-weight: bold; color:red; "> Бұл номер біздің жүйеде тіркелген </span> -->
+	<!-- </div> -->
+	<input type="hidden" id="invaliddate" value="{{invaliddate}}">
+	{% endif%}
+	<div class="limiter">
+		<div class="container-login100" style="background-image: url('static/img/frontimg/apple.jpg');">
+			<div class="wrap-login100 p-l-55 p-r-55 p-t-30 p-b-54 m-t-80">
+				<form method='POST' class="login100-form validate-form" action="{% url 'create_user' %}">
+					{% csrf_token %}
+
+					<h4 class="login100-form-title">
+						Тіркел
+					</h4>
+
+					<div class="wrap-input100 validate-input m-b-23">
+						<input class="input100" type="text" name="fullname" placeholder="ФИО">
+						<span class="focus-input100"></span>
+					</div>
+
+					<div class="wrap-input100 validate-input m-b-23">
+						<input class="input100" type="text" name="school" placeholder="Мектебі">
+						<span class="focus-input100"></span>
+					</div>
+
+					<div class="wrap-input100 validate-input m-b-23">
+						<input class="input100" id="address" type="text" name="address" placeholder="Мекен - жайы">
+						<span class="focus-input100"></span>
+					</div>
+
+					<div class="wrap-input100 validate-input m-b-23">
+						<input class="input100" id="phone" type="text" name="phone" placeholder="Телефон номер">
+						<span class="focus-input100"></span>
+					</div>
+
+					<div class="wrap-input100 validate-input m-b-23">
+						<input id="parent_number" class="input100" type="text" name="parents_phone"
+							placeholder="Ата-анаңыздың телефон номері">
+						<span class="focus-input100"></span>
+					</div>
+
+					<div class="wrap-input100 validate-input m-b-23">
+						<input class="input100" type="email" name="email" placeholder="Почта">
+						<span class="focus-input100"></span>
+					</div>
+
+
+					<div class="wrap-input100 validate-input" data-validate="Password is required">
+						<input class="input100" type="password" id="password-1" name="pass"
+							placeholder="Құпия сөз ойлап табыңыз">
+						<span class="focus-input100"></span>
+					</div>
+
+					<div class="wrap-input100 validate-input" data-validate="Password is required">
+						<input class="input100 m-t-20" type="password" id="password-2" name="password"
+							placeholder="Құпия сөзді қайталаңыз">
+						<span class="focus-input100">
+						</span>
+					</div>
+
+
+
+					<label id="helptext"
+						style="visibility: hidden; font-size: 12px; font-style: italic; font-weight: semibold;">Пароль
+						кем дегенде: <br>*8
+						таңбадан тек қана әріптер мен сандардан тұру
+						керек <br> *1 үлкен әріп болу керек <br> *1 кіші әріп болу керек <br>*1 сан болу
+						керек</label>
+
+					<input type="hidden" id="selected_grade" name="selected_grade" value="{{selected_grade}}">
+
+					<h5 id="form-title">Сіздің аяқтаған сыныбыңыз</h5>
+					<div id="debt-amount-slider">
+						<input type="radio" name="debt-amount" id="1" value="6" required>
+						<label for="1" data-debt-amount="6"></label>
+						<input type="radio" name="debt-amount" id="2" value="7" required>
+						<label for="2" data-debt-amount="7"></label>
+						<input type="radio" name="debt-amount" id="3" value="8" required>
+						<label for="3" data-debt-amount="8"></label>
+						<input type="radio" name="debt-amount" id="4" value="9" required>
+						<label for="4" data-debt-amount="9"></label>
+						<div id="debt-amount-pos"></div>
+					</div>
+
+					<button type="button" id="button_modal" data-toggle="modal" data-target="#exampleModal"
+						style="padding-right: 15px; padding-top: 40px; ">
+						<u class="text_modal">Ережелермен таныстым:</u>
+					</button>
+					<input type="checkbox" id="rules_check" name="rules_check" value="rule">
+
+					<!-- Modal -->
+					<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+						aria-labelledby="exampleModalLabel" aria-hidden="true">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h5 class="modal-title" id="exampleModalLabel">Ережелер:</h5>
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+								</div>
+								<div class="modal-body">
+									Сәлеметсіз бе, құрметті оқушы! Сізді Алматы облыстық білім басқармасының «Дарынды
+									балаларға арналған Жыланды мамандандырылған лицей-интернаты» КММ білім ордасына
+									қабылдауында көріп тұрғанымызға ризашылығымызды білдіргіміз келеді. <br>
+									Осы мекемеде білім алу үшін, өз біліміңізді тексеріп сараптан өткізу ережелерімен
+									танысыңыз:<br>
+									<br>
+									<p>1) Сынақты тек 2020 жылдың 22-ші маусымында 9:00 мен 21:00 аралығында ғана онлайн
+										тапсыра аласыз. Уақыт аяқталғанда автоматты түрде сынақ та аяқталады. Сынақ
+										тапсыру уақыты 2 сағат.</p>
+									<p>2) Сыныптар 2019-2020 оқу жылында аяқтаған сыныбы бойынша анықталады. Яғни, сіз 8
+										сыныпты аяқтаған болсаңыз 8-сыныпқа арналған тестті таңдайсыз.</p>
+									<p>3) Сынақ пәндері 6 сыныпты аяқтаған оқушылар үшін математика, логика және қазақ
+										тілі, 8-10 сыныптарды аяқтағандар үшін математика, логика және физика. Барлық
+										пәндер бойынша тапсырмалар тек қазақ тілінде.</p>
+									<p>4) Әр пән бойынша 20 тапсырма. Тапсырмалар ашық түрде беріледі. Өз жауабыңызды
+										«жауап» жолағына толық жазсаңыз болады. Егер жауабыңыз бөлшек түрінде болса «/»
+										белгісін, дәреже түрінде болса «^» белгісін қолданыңыз. Сіз жазған жауаптарды
+										мамандар тексереді, сондықтан өзіңіз білетін символикалар көмегімен, өзіңізге
+										ыңғайлы тәсілмен толтырыңыз</p>
+									<p>5) Тапсырмаларды ретімен орындау міндетті емес, кез-кедген уақытта кез-келген
+										пәннің кез-келген тапсырмасын орындай аласыз!</p>
+									<p>6) Мүмкіндігінше академиялық тазалық сақтаңыз. Көмекші құралдар ретінде тек
+										калькулятор қолданыңыз.</p>
+									<p>7) Сізді келесі оқу жылында өз мектебімізде күтеміз!</p>
+									<br>
+									<h3 style="font-size: 700; font-style: italic; text-align: center;">СӘТТІЛІК!</h3>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+								</div>
+							</div>
+						</div>
+					</div>
+
+
+
+
+					<div class="container-login100-form-btn">
+						<div class="wrap-login100-form-btn">
+							<div class="login100-form-bgbtn"></div>
+							<div>
+								<button id="submit-button" class="login100-form-btn" type="submit">
+									Кіру
+								</button>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+
+
+	<script>
+		var id = setInterval("Checker()", 500)
+		// var id1 = setInterval("Checker1()", 500)
+
+		$(document).ready(function () {
+			console.log("First");
+			if (document.getElementById("invaliddate").value == "True") {
+				alert("Бұл номер жүйеде бұрын тіркелген");
+				console.log("Second");
+			}
+
+		});
+
+		$(document).ready(function () {
+			if (document.getElementById("selected_grade").value == "6") {
+				document.getElementById("1").checked = true;
+			} else if (document.getElementById("selected_grade").value == "7") {
+				document.getElementById("2").checked = true;
+			} else if (document.getElementById("selected_grade").value == "8") {
+				document.getElementById("3").checked = true;
+			} else if (document.getElementById("selected_grade").value == "9") {
+				document.getElementById("4").checked = true;
+			} else {
+				console.log("Nothing");
+			}
+
+
+		});
+	</script>
+
+	<script>
+		function Checker() {
+			radios = document.querySelectorAll('input[name="debt-amount"]');
+
+			if (document.getElementById("password-1").value.match(
+					/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/)) {
+				console.log("TRue Password");
+				console.log(document.getElementById('password-1').value + " = " + document
+					.getElementById(
+						'password-2').value)
+				if (document.getElementById('password-1').value ==
+					document.getElementById('password-2').value) {
+					console.log("Password");
+					console.log(document.getElementById("rules_check").checked);
+					if (document.getElementById("rules_check").checked) {
+
+						var selected = false;
+						for (const rb of radios) {
+							// console.log(rb)
+							if (rb.checked) {
+								selected = true;
+								document.getElementById("helptext").style.visibility = 'visible';
+								document.getElementById("helptext").innerHTML = '';
+
+								document.getElementById("submit-button").disabled = false;
+							} else {
+								if (selected) {
+									console.log("600");
+									document.getElementById("helptext").style.visibility = 'visible';
+									document.getElementById("helptext").innerHTML = '';
+								} else {
+									document.getElementById("helptext").style.visibility = 'visible';
+									document.getElementById("helptext").innerHTML = 'Сынып таңдалу керек';
+								}
+							}
+						}
+
+
+					} else {
+						document.getElementById("helptext").style.visibility = 'visible';
+						document.getElementById("helptext").innerHTML =
+							'Ережемен танысу керек';
+						console.log("300");
+					}
+				} else {
+					document.getElementById("helptext").style.visibility = 'visible';
+					document.getElementById("helptext").innerHTML =
+						'Құпиясөздер бірдей болу керек';
+				}
+
+			} else {
+				document.getElementById("submit-button").disabled = true;
+				document.getElementById("helptext").style.visibility = 'visible';
+				document.getElementById("helptext").innerHTML =
+					"Пароль кем дегенде: \n *8 таңбадан тек қана әріптер мен сандардан тұру керек \n *1 үлкен әріп болу керек <br> *1 кіші әріп болу керек \n *1 сан бол керек";
+				// document.getElementById("helptext").style.visibility = 'visible';
+				console.log("false");
+				// console.log(password);
+				// alert(password);
+			}
+
+			// console.log(password)
+			// console.log(document.getElementById("password-1").value);
+		}
+	</script>
+
+	<!-- <script>
+		$(document).ready(function () {
+			$("#password-1").on("input", function (e) {
+				if (document.getElementById('password-1').value != document.getElementById('password-2')
+					.value) {
+					document.getElementById('submit-button').disabled = true;
+				} else {
+					document.getElementById('submit-button').disabled = false;
+				}
+			});
+		});
+	</script> -->
+
+	<!--===============================================================================================-->
+	<script src="static/vendor/jquery/jquery-3.2.1.min.js"></script>
+	<!--===============================================================================================-->
+	<script src="static/vendor/animsition/js/animsition.min.js"></script>
+	<!--===============================================================================================-->
+	<script src="static/vendor/bootstrap/js/popper.js"></script>
+	<script src="static/vendor/bootstrap/js/bootstrap.min.js"></script>
+	<!--===============================================================================================-->
+	<script src="static/vendor/select2/select2.min.js"></script>
+	<!--===============================================================================================-->
+	<script src="static/vendor/daterangepicker/moment.min.js"></script>
+	<script src="static/vendor/daterangepicker/daterangepicker.js"></script>
+	<!--===============================================================================================-->
+	<script src="static/vendor/countdowntime/countdowntime.js"></script>
+	<!--===============================================================================================-->
+	<script src="static/js/sign_in.js"></script>
+	<!--===============================================================================================-->
+	<script src="http://getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"></script>
+	<script src="static/js/jquery.mask.min.js"></script>
+	<script>
+		$(document).ready(function () {
+			$("#phone").mask("+7799-999-99-99");
+		});
+
+		$(document).ready(function () {
+			$("#parent_number").mask("+7799-999-99-99");
+		});
+	</script>
+
+
+
+</body>
+
+</html>

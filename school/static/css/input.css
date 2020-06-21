@@ -1,0 +1,25 @@
+body {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  /*background-image: url('/static/img/frontimg/apple.jpg');*/
+}
+
+.form-signin {
+  width: 100%;
+  max-width: 330px;
+  padding: 7px;
+  margin: auto;
+}
+
+
+.form-signin .form-control {
+  position: relative;
+  box-sizing: border-box;
+  height: auto;
+  padding: 12px;
+  font-size: 14px;
+}

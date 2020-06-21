@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- {% static 'assets/images/about/1.jpg -->
+    <!-- assets/css/style.css -->
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Kaushan+Script|Montserrat:300i,400,700&amp;subset=cyrillic-ext"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+        integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+    <title>Zhml synaq</title>
+</head>
+
+<body>
+
+
+    <header class="header" id="header">
+        <div class="container">
+            <div class="header__inner">
+                <div class="header__logo" data-scroll="#intro">Дарынды балаларға арналған Жыланды <br>мамандандырылған
+                    лицей-интернаты</div>
+
+                <nav class="nav" id="nav">
+                    <a class="nav__link" href="#" data-scroll="#about">Мектеп туралы</a>
+                    <a class="nav__link" href="#" data-scroll="#section">Олимпиадалар</a>
+                    <a class="nav__link" href="#" data-scroll="#works">Жетістіктер</a>
+                    <a class="nav__link" href="#" data-scroll="#footer">Байланыс</a>
+                    <a class="nav__link" href="#" data-scroll="#services">Тестке кіру</a>
+                    <a class="nav__link" href="{% url 'sign_in' %}">Жүйеге кіру</a>
+                </nav>
+
+                <button class="nav-toggle" id="nav_toggle" type="button">
+                    <span class="nav-toggle__item">Барлық</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+
+    <div class="page">
+
+        <!-- Intro -->
+        <div class="intro" id="intro">
+            <div class="container">
+                <div class="intro__inner">
+                    <h2 class="intro__suptitle">Болашаққа нық қадам!</h2>
+                    <h1 class="intro__title">Жыланды Қарсы алады!</h1>
+
+                    <a class="btn" href="#services">Қабылдау тесті</a>
+                </div>
+            </div>
+
+            <div class="slider">
+                <div class="container">
+                    <div class="slider__inner">
+                        <div class="slider__item active">
+                            <span class="slider__num">01 <br>Жақсы білім!</span>
+
+                        </div>
+                        <div class="slider__item">
+                            <span class="slider__num">02 <br>Дайындық!</span>
+
+                        </div>
+                        <div class="slider__item">
+                            <span class="slider__num">03 <br> Үздік нәтиже! </span>
+
+                        </div>
+                        <div class="slider__item">
+                            <span class="slider__num">04 <br>Жарқын болашақ!</span>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div><!-- /.intro -->
+
+
+        <!-- About -->
+        <section class="section" id="about">
+            <div class="container">
+
+                <div class="section__header">
+
+                    <h2 class="section__title">Біздің мектеп өмірі жайлы!</h2>
+                    <div class="section__textt">
+                        <p>«MATHclub» мүшелері 2015 жылдан бері өткізіліп келе жатқан Алакөл ауданының 3-6 сынып
+                            оқушылары сайысқа түсетін «Zhylandy open sсhool» , «Zhylandy open Kabanay» және «Zhylandy
+                            open Usharal» турнирлерін ұйымдасытрады және өткізеді.
+                            Лицейіміз физика-математика бағытында болғандықтан болар, біздің оқушылар шахмат, дойбы,
+                            тоғызқұмалақ ойындарын сүйіп ойнайды. Лицей оқушыларының арасында әр тоқсан сайын осы үш
+                            ойын түрлері бойынша лицей біріншілігі өткізіледі. Көктем және күз айлары кезінде ашық аспан
+                            астында шахмат ойнап жарысып көңіл көтергенге не жетсін.Лицейде Гарри Поттер фильмдері мен
+                            кітаптарының фанаттары өте көп. Сол балалармен бірігіп лицей әкімшілігі 2015 жылдан бері «HP
+                            party» кешін өткізіп келеді. Бұл тематикалық оқушыларымыз арасындағы ең асығып күтетін
+                            шаралардың бірі. Сонымен қатар физика-математика кафедрасының апталығында «MATH party»
+                            тематикалық кеші де лицей өмірінде ерекше орын алады. Және 10 және 11 сынып оқушылары оқитын
+                            «Кәсіпкерлік және бизнес негіздері» пәні бойынша әр жарты жалдықта есеп беру кеші өтеді. Бұл
+                            кеш оқушылардың пән бойынша алған дағдылары мен білімдерін, тұтынушы мен кәсіпкер арасындағы
+                            байланысты көңілді әрі пайдалы етеп өрсетіп келед.
+
+                             
+                        </p>
+
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card__item">
+                        <div class="card__inner">
+                            <div class="card__img">
+                                <!-- assets/images/about/1.jpg -->
+                                <img src="{% static 'assets/images/about/1.jpg' %}" alt="">
+                            </div>
+                            <div class="card__text">«Zhylandy open sсhool» , «Zhylandy open Kabanay» және «Zhylandy open
+                                Usharal» </div>
+                        </div>
+                    </div>
+
+                    <div class="card__item">
+                        <div class="card__inner">
+                            <div class="card__img">
+                                <!-- assets/images/about/2.jpg -->
+                                <img src="{% static 'assets/images/about/2.jpg' %}" alt="">
+                            </div>
+                            <div class="card__text">Шахмат, дойбы, тоғызқұмалақ ойындары</div>
+                        </div>
+                    </div>
+
+                    <div class="card__item">
+                        <div class="card__inner">
+                            <div class="card__img">
+                                <!-- assets/images/about/3.jpg -->
+                                <img src="{% static 'assets/images/about/3.jpg' %}" alt="">
+                            </div>
+                            <div class="card__text"> «HP party»</div>
+                        </div>
+                    </div>
+                </div>
+                <h3 class="section__suptitle">2015 жылдан бергі нәтиже</h3>
+
+            </div><!-- /.container -->
+        </section>
+
+
+        <!-- Statistics -->
+        <div class="statistics">
+            <div class="container">
+
+                <div class="stat">
+                    <div class="stat__item">
+                        <div class="stat__count">450</div>
+                        <div class="stat__text">Қазіргі таңдағы оқушы саны</div>
+                    </div>
+                    <div class="stat__item">
+                        <div class="stat__count">123</div>
+                        <div class="stat__text">Грантқа түскен түлектер</div>
+                    </div>
+                    <div class="stat__item">
+                        <div class="stat__count">105</div>
+                        <div class="stat__text">Облыстық, аудандық олимпиада жеңімпазы</div>
+                    </div>
+                    <div class="stat__item">
+                        <div class="stat__count">18</div>
+                        <div class="stat__text">Республикалық, Халықаралық жеңімпаздар</div>
+                    </div>
+                    <div class="stat__item">
+                        <div class="stat__count">24</div>
+                        <div class="stat__text">Шетелге оқуға түскен түлектер</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- Services -->
+        <section class="section" id="services">
+            <div class="container-fluid">
+
+                <div class="section__header">
+                    <h3 class="section__suptitle">Басталуы: 2020.06.22 <br> Тестілеуді таңғы сағат 09:00 дан кешкі сағат
+                        21:00 дейінгі аралығында тапсыруға болады. </h3>
+                    <h2 class="section__title">Қабылдау тесті</h2>
+                </div>
+
+
+                <div class="services">
+                    <form action="{% url 'input' %}" method="POST" class="services-form">
+                        {% csrf_token %}
+                        <div class="services__item  services__item--border">
+                            <!-- assets/images/services/p1.png -->
+                            <!-- <img class="services__icon" src="{% static 'assets/images/services/p1.png' %}" alt=""> -->
+                            <input type="hidden" name="selected_grade" value="6">
+                            <input class="btnn" type="submit" value="6 сынып">
+                            <div class="services__text">6 сыныпты бітіріп 7 сыныпқа көшкен оқушылар үшін. Тестілеу
+                                математика, логика және қазақ тілі пәндері бойынша болады. Тестілеу уақыты 2 сағат.
+                            </div>
+                        </div>
+                    </form>
+                    <form action="{% url 'input' %}" method="POST" class="services-form">
+                        {% csrf_token %}
+                        <div class="services__item  services__item--border">
+                            <!-- assets/images/services/p2.png -->
+                            <!-- <img class="services__icon" src="{% static 'assets/images/services/p2.png' %}" alt=""> -->
+                            <input type="hidden" name="selected_grade" value="7">
+                            <input class="btnn" type="submit" value="7 сынып">
+                            <div class="services__text">7 сыныпты бітіріп 8 сыныпқа көшкен оқушылар үшін. Тестілеу
+                                математика және физика пәндері бойынша болады. Тестілеу уақыты 2 сағат.</div>
+                        </div>
+                    </form>
+                    <form action="{% url 'input' %}" method="POST" class="services-form">
+                        {% csrf_token %}
+                        <div class="services__item  services__item--border">
+                            <!-- assets/images/services/p3.png -->
+                            <!-- <img class="services__icon" src="{% static 'assets/images/services/p3.png' %}" alt=""> -->
+                            <input type="hidden" name="selected_grade" value="8">
+                            <input class="btnn" type="submit" value="8 сынып">
+                            <div class="services__text">8 сыныпты бітіріп 9 сыныпқа көшкен оқушылар үшін. Тестілеу
+                                математика және физика пәндері бойынша болады. Тестілеу уақыты 2 сағат.</div>
+                        </div>
+                    </form>
+                    <form action="{% url 'input' %}" method="POST" class="services-form">
+                        {% csrf_token %}
+                        <div class="services__item">
+                            <!-- assets/images/services/p4.png -->
+                            <!-- <img class="services__icon" src="{% static 'assets/images/services/p4.png' %}" alt=""> -->
+                            <input type="hidden" name="selected_grade" value="9">
+                            <input class="btnn" type="submit" value="9 сынып">
+                            <div class="services__text">9 сыныпты бітіріп 10 сыныпқа көшкен оқушылар үшін. Тестілеу
+                                математика және физика пәндері бойынша болады. Тестілеу уақыты 2 сағат.</div>
+                        </div>
+                    </form>
+
+
+                </div>
+
+            </div><!-- /.container -->
+        </section>
+
+
+
+        <section class="section  section--devices">
+            <div class="container">
+
+                <div class="section__header">
+                    <h3 class="section__suptitlee">Жарқын болашақ сені күтуде!</h3>
+                    <h2 class="section__titl">Сәттілік!</h2>
+                </div>
+
+
+            </div>
+        </section>
+        <!-- Reviews 1 -->
+        <div class="section  section--gray">
+            <div class="container">
+
+                <div class="reviews">
+                    <div class="section__header">
+                        <h3 class="section__suptitle">Бас демеушіміз Бауыржан Кеңесбекұлы Оспанов</h3>
+                    </div>
+                    <div data-slider>
+                        <div>
+                            <div class="reviews__item">
+                                <!-- assets/images/avatar.png -->
+                                <img class="reviews__photo" src="{% static 'assets/images/avatar.png' %}" alt="">
+                                <div class="reviews__text">“- Мен жүздеген миллион долларға яхта сатып алған емеспін.
+                                    Маған мұндай салтанаттан гөрі өзім қолдап жіберген спортшылардың жүлде алып,
+                                    оқушылардың пәндік олимпиадалардан жеңіспен оралғаны дұрыс. Былтыр біздің ауылдағы
+                                    мектептен түлеп ұшқан оқушылардың 95 пайызы ҰБТ-дан жақсы ұпай жинап, грантқа түсті.
+                                    Лепсідегі спорт-интернатты сегіз оқушы үздік, 42 бала екпінділер қатарында аяқтады.
+                                    Ал Жыландыдағы физика-математика мектебін бітірген түлектер арасында Мәскеу
+                                    университетіне атом саласын зерттеуге кеткендері бар. Менің мақсатым - осы
+                                    қыз-жігіттердің ақылы оқуын төлеп бергенше, олардың тегін білім алуына жағдай жасау.
+                                    Солардың өмірден өз орнын табуына көмектесу. Менің ұстанымдарым осындай.”</div>
+                                <div class="reviews__author">Бауыржан Оспанов</div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="copyrightt"> </div>
+        <!-- Logos -->
+        <div class="section  section--gray">
+            <div class="container">
+                <h2 class="section__titlee">Лицеймен серіктес университеттер </h2>
+                <div class="logos">
+                    <div class="logos__item">
+                        <!-- assets/images/logos/1.png -->
+                        <img class="logos__img" src="{% static 'assets/images/logos/1.png' %}" alt="">
+                    </div>
+                    <div class="logos__item">
+                        <!-- assets/images/logos/2.png -->
+                        <img class="logos__img" src="{% static 'assets/images/logos/2.png' %}" alt="">
+                    </div>
+                    <div class="logos__item">
+                        <!-- assets/images/logos/3.png -->
+                        <img class="logos__img" src="{% static 'assets/images/logos/3.png' %}" alt="">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+        <section class="section">
+            <div class="container">
+
+                <div class="section__header">
+                    <h3 class="section__suptitle">Біліммен қатар</h3>
+                    <h2 class="section__title">Мектептегі атаулы әр-түрлі клубтар</h2>
+                    <div class="section__text">
+                        <p>Күнделікті сабақтар мен атаулы үлкен олимпиадалардан басқа мектепте оқушылар үшін түрлі
+                            атаулы клубтар ашылған. Оқушылар бұл клубтарға арнайы мектепшілік іріктеу олимпиадалары және
+                            мұғалімнің үздік баланы таңдауы арқылы қабылданады. Білімді практикада қолданатын сәт осы
+                            клубтарға арнайы мүше болғаннан кейін туындайды. Ендеше мүмкіндікті құр жіберме! Түрлі
+                            олимпиадалар мен жаңа орта сені күтуде! Егер сіз де бізбен бірге дамып, өз біліміңіз бен
+                            дағдыларыңызды дамытқыңыз келсе, біздің есік әрқашан да ашық!</p>
+                    </div>
+                </div>
+
+                <div class="wedo">
+                    <div class="wedo__item">
+                        <!-- assets/images/wedo.jpg -->
+                        <img class="wedo__img" src="{% static 'assets/images/wedo.jpg' %}" alt="">
+                    </div>
+
+                    <div class="wedo__item">
+
+                        <div class="accordion">
+                            <div class="accordion__item" data-collapse="#wedo_1">
+                                <div class="accordion__header">
+                                    <!-- assets/images/services/photography.png -->
+                                    <!-- <img class="accordion__icon" src="{% static 'assets/images/services/photography.png' %}" alt=""> -->
+                                    <div class="accordion__title">«МИФclub» </div>
+                                </div>
+                                <div class="accordion__content" id="wedo_1">
+                                    <p>
+                                        Математика-Информатика-Физика пәндеріне негіздерген мектептегі үлкен клубтардың
+                                        бірі. Клубтың мақсаты сынып бойынша топтарға бөлініп осы үш пән бойынша білімді
+                                        шыңдап, тақырыптары терең зерттеп түсіну. Клубтың ерекшелігі физикалық
+                                        заңдылықтарды зертханалық жұмыс жасау арқылы заңдылыққа практикалық тұрғыдан көз
+                                        жеткізу. </p>
+                                </div>
+                            </div>
+
+                            <div class="accordion__item active" data-collapse="#wedo_2">
+                                <div class="accordion__header">
+                                    <!-- assets/images/services/creativity.png -->
+                                    <!-- <img class="accordion__icon" src="{% static 'assets/images/services/creativity.png' %}" alt=""> -->
+                                    <div class="accordion__title">«MATHclub» </div>
+                                </div>
+                                <div class="accordion__content" id="wedo_2">
+                                    <p>Бұл клуб математика мен логикаға бағытталған. Клубтың негізгі мақсаты
+                                        математикаға қабілетті балалармен жұмыс жасап, әрі қарай білімін шыңдап, үлкен
+                                        облыстық,республикалық, халықаралаық олимпиадалар мен ғылыми жобалар жарыстарына
+                                        шығу. Клуб мүшелері мектептегі біршама артықшылықтарға ие. Клуб мүшелері тек өз
+                                        білімдерін ғана тереңдетіп қоймай, лицейдегі кез-келген оқушыға көмектесуге
+                                        дайын. </p>
+                                </div>
+                            </div>
+
+                            <div class="accordion__item" data-collapse="#wedo_3">
+                                <div class="accordion__header">
+                                    <!-- assets/images/services/webdesign.png -->
+                                    <!-- <img class="accordion__icon" src="{% static 'assets/images/services/webdesign.png' %}" alt=""> -->
+                                    <div class="accordion__title">«Роботатехника»</div>
+                                </div>
+                                <div class="accordion__content" id="wedo_3">
+                                    <p>Клуб Работотехника, программалау тілдерін үйрену, 3D модельдеу, ардуино құрастыру
+                                        бағыттарына негізделген. Клубтың басты мақсаты заманауи озық технологиялардың
+                                        құрылымын зерттеп түсіну және оладың моделін жасап, программалап үйренуге
+                                        негізделген.</p>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <div class="copyrightt"> </div>
+        <!-- Reviews 1 -->
+
+
+
+        <!-- Team -->
+        <section class="section" id="section">
+            <div class="container">
+
+                <div class="section__header">
+                    <h3 class="section__suptitle">Лицей тынысы</h3>
+                    <h2 class="section__title">Жыл сайынғы өткізіліп тұратын атаулы олимпиада жарыстары</h2>
+                    <div class="section__text">
+                        <p>Жыл сайын лицейімізде атаулы олимпиада жарыстары өткізіледі. Бұл олимпиадалар Математика және
+                            Физика пәндері бойынша Аудандық және облыстық кезеңдерге бөлінеді. Аудандық олимпиадада
+                            Алакөл ауданының барлық 45 мектебінен ең озық шыққан оқушылар білім додасына түседі.
+                            Облыстық кезеңге аудандақ кезеңнің жеңімпаздары Алакөл ауданының намысын қорғайды. Алматы
+                            облысының түкпір- түкпірінен келетін ең дарындылар бақ сынайтын бұл жарыста да біздің
+                            оқушылар талай мәрте жеңіске қол жеткізген! </p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card__item">
+                        <div class="card__inner">
+                            <div class="card__img">
+                                <!-- assets/images/team/1.jpg -->
+                                <img src="{% static 'assets/images/team/1.jpg' %}" alt="">
+                            </div>
+                            <div class="card__text">Аудандық Физика-Математика олимпиадасы</div>
+                        </div>
+                        <div class="card__info">
+                            <div class="card__name">Аудандық олимпиадалар мен ғылыми жұмыстардан жалпы</div>
+                            <div class="card__prof">120 жүлделі орын</div>
+                        </div>
+                    </div><!-- /.card__item -->
+
+                    <div class="card__item">
+                        <div class="card__inner">
+                            <div class="card__img">
+                                <!-- assets/images/team/2.jpg -->
+                                <img src="{% static 'assets/images/team/2.jpg' %}" alt="">
+                            </div>
+                            <div class="card__text">Облыстық Физика-Математика олимпиадасы</div>
+                        </div>
+                        <div class="card__info">
+                            <div class="card__name">Облыстық олимпиадалар мен ғылыми жобалардан жалпы</div>
+                            <div class="card__prof">36 жүлделі орын</div>
+                        </div>
+                    </div><!-- /.card__item -->
+
+                    <div class="card__item">
+                        <div class="card__inner">
+                            <div class="card__img">
+                                <!-- assets/images/team/3.jpg -->
+                                <img src="{% static 'assets/images/team/3.jpg' %}" alt="">
+                            </div>
+                            <div class="card__text">Республикалық, Халықаралық жарыстар</div>
+
+                        </div>
+                        <div class="card__info">
+                            <div class="card__name">Республикалық, Халықаралық жарыстардан жалпы </div>
+                            <div class="card__prof">18 жүлделі орын</div>
+                        </div>
+                    </div><!-- /.card__item -->
+
+                </div><!-- /.card -->
+
+            </div><!-- /.container -->
+        </section>
+
+        <div class="copyrightt"> </div>
+
+
+        <!-- Works -->
+        <section class="section" id="works">
+            <div class="container">
+                <div class="section__header">
+                    <h3 class="section__suptitle">Жарыстар</h3>
+                    <h2 class="section__title">Лицейдегі іс-шаралар </h2>
+                    <div class="section__text">
+                        <p>Олимпиадалардан бөлек лицейімізде басқада ақындық мүшәйраларға, жас таланттар байқаулары мен
+                            өнер додалары, спорттық жарыстарға аса көңіл бөлінеді. Аймақтық, аудандық деңгейде өтілетін
+                            бұл жарыстарға лицей оқушылары белсенді қатысып, жүлделі орындарды жеңіп алады.</p>
+                    </div>
+                    <div class="works">
+                        <div class="works__col">
+                            <div class="works__item">
+                                <!-- assets/images/works/1.jpg -->
+                                <img class="works__image" src="{% static 'assets/images/works/1.jpg' %}" alt="">
+                                <div class="works__info">
+                                    <div class="works__title">Жәутіков олимпиадасы</div>
+                                    <div class="works__text"></div>
+                                </div>
+                            </div>
+                            <div class="works__item">
+                                <!-- assets/images/works/2.jpg -->
+                                <img class="works__image" src="{% static 'assets/images/works/2.jpg' %}" alt="">
+                                <div class="works__info">
+                                    <div class="works__title">Аудандық Айгөлек байқауы</div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="works__col">
+                            <div class="works__item">
+                                <!-- assets/images/works/3.jpg -->
+                                <img class="works__image" src="{% static 'assets/images/works/3.jpg' %}" alt="">
+                                <div class="works__info">
+                                    <div class="works__title">Республикалық жарыс</div>
+                                    <div class="works__text"></div>
+                                </div>
+                            </div>
+                            <div class="works__item">
+                                <!-- assets/images/works/4.jpg -->
+                                <img class="works__image" src="{% static 'assets/images/works/4.jpg' %}" alt="">
+                                <div class="works__info">
+                                    <div class="works__title">Аймақтық Мұқағали жыр байқауы</div>
+                                    <div class="works__text"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="works__col">
+                            <div class="works__item">
+                                <!-- assets/images/works/6.jpg -->
+                                <img class="works__image" src="{% static 'assets/images/works/6.jpg' %}" alt="">
+                                <div class="works__info">
+                                    <div class="works__title">Республикалық ғылыми жоба</div>
+                                    <div class="works__text"></div>
+                                </div>
+                            </div>
+                            <div class="works__item">
+                                <!-- assets/images/works/7.jpg -->
+                                <img class="works__image" src="{% static 'assets/images/works/7.jpg' %}" alt="">
+                                <div class="works__info">
+                                    <div class="works__title">Облыстық олимпиада</div>
+                                    <div class="works__text"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- /.works -->
+                </div>
+            </div>
+
+
+        </section>
+
+        <div class="copyrightt"> </div>
+
+
+
+        <!-- Map -->
+        <section class="section  section--map">
+            <div class="container">
+                <div class="map">
+                    <h2 class="map__title">
+                        <div><i class="fas fa-map-marker-alt"></i></div>
+                        <a href="https://goo.gl/maps/ky47Rgjc2c99sBXi7" target="_blank">Картаны ашу</a>
+                    </h2>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Footer -->
+        <footer class="footer" id="footer">
+            <div class="container">
+
+                <div class="footer__inner">
+                    <div class="footer__col  footer__col--first">
+                        <div class="footer__logo">Дарынды балаларға арналған Жыланды мамандандырылған лицей-интернаты
+                        </div>
+                        <div class="footer__text">Лицей директоры Бикенов Шыңғыс Маратұлы
+                        </div>
+                        <div class="footer__textе">Байланыс: 8705 181 40 20
+                            <br>Оқу ісі жөніндегі орынбасары Будурбаева Бибигуль
+                        </div>
+
+                    </div><!-- /.footer__col -->
+
+                    <div class="footer__col  footer__col--second">
+
+                    </div>
+
+
+
+                </div><!-- /.footer__inner -->
+
+                <div class="copyright">
+                    <div>Сайтты жасаған Қадылхан Айдана, Какибай Нұрдан </div>
+
+                    <div> <span>Жыланды 2020</span>
+                    </div>
+                </div>
+
+            </div><!-- /.container -->
+        </footer>
+
+    </div><!-- /.page -->
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+    <script src="{% static 'assets/js/app.js'%}"></script>
+
+
+</body>
+
+</html>
