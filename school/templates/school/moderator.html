@@ -35,11 +35,14 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
         <li class="nav-item active">
-          <a class="nav-link" href="#" style="color: white;">Сүйінәлі Нұржігіт<span class="sr-only">(current)</span></a>
+          {% if user.is_authenticated %}
+                    <a class="nav-link" href="#" style="color: white;">{{user.username}}<span
+                            class="sr-only">(current)</span></a>
+          {% endif %}
         </li>
 
         <li class="nav-item active">
-          <a class="nav-link" href="#" style="color: rgb(240, 18, 18);">Математика<span
+          <a class="nav-link" href="#" style="color: rgb(240, 18, 18);">ZHML-SYNAQ.KZ<span
               class="sr-only">(current)</span></a>
         </li>
 
@@ -84,26 +87,21 @@
             <th scope="col">ФИО</th>
             <th scope="col">Дата</th>
             <th scope="col">Мектеп</th>
-            <th scope="col">Логика</th>
-            <th scope="col">Математика</th>
-            <th scope="col">Қазақ тілі</th>
-            <th scope="col">Общий</th>
+            <th scope="col">Бағасы</th>
             <th scope="col">Статус</th>
           </tr>
         </thead>
         <tbody>
-          {%for i , j in dic.7.students.items %}
+          {%for i,j in dic.6.students.items %}
 
           <tr>
             <th scope="row">{{forloop.counter}}</th>
             <td><a href="{% url 'rate' i.id %}">{{i.user.first_name}}</a></td>
             <td>{{i.start}}</td>
             <td>{{i.school}}</td>
-            {% for k, v in j.items %}
-            {%for grade in v.values%}
-            <td>{{grade}} балл</td>
-            {%endfor%}
-            {%endfor%}
+    
+            <td>{{j.grades}} балл</td>
+    
 
             {% if j.status %}
             <td style="color: blue;">Тексерілді</td>
@@ -130,27 +128,21 @@
             <th scope="col">ФИО</th>
             <th scope="col">Дата</th>
             <th scope="col">Мектеп</th>
-            <th scope="col">Математика</th>
-            <th scope="col">Логика</th>
-            <th scope="col">Қазақ тілі</th>
-            <th scope="col">Жалпы</th>
-            <th scope="col">Статус7</th>
+            <th scope="col">Бағасы</th>
+            <th scope="col">Статус</th>
           </tr>
         </thead>
         <tbody>
-          
-          {%for i , j in dic.7.students.items %}
+          {%for i,j in dic.7.students.items %}
 
           <tr>
             <th scope="row">{{forloop.counter}}</th>
             <td><a href="{% url 'rate' i.id %}">{{i.user.first_name}}</a></td>
             <td>{{i.start}}</td>
             <td>{{i.school}}</td>
-            {% for k, v in j.items %}
-            {%for grade in v.values%}
-            <td>{{grade}} балл</td>
-            {%endfor%}
-            {%endfor%}
+    
+            <td>{{j.grades}} балл</td>
+    
 
             {% if j.status %}
             <td style="color: blue;">Тексерілді</td>
@@ -162,7 +154,6 @@
       
 
           {%endfor%}
-
 
         </tbody>
       </table>
@@ -178,27 +169,21 @@
             <th scope="col">ФИО</th>
             <th scope="col">Дата</th>
             <th scope="col">Мектеп</th>
-            <th scope="col">Математика</th>
-            <th scope="col">Логика</th>
-            <th scope="col">Қазақ тілі</th>
-            <th scope="col">Жалпы</th>
-            <th scope="col">Статус7</th>
+            <th scope="col">Бағасы</th>
+            <th scope="col">Статус</th>
           </tr>
         </thead>
         <tbody>
-          
-          {%for i , j in dic.8.students.items %}
+          {%for i,j in dic.8.students.items %}
 
           <tr>
             <th scope="row">{{forloop.counter}}</th>
             <td><a href="{% url 'rate' i.id %}">{{i.user.first_name}}</a></td>
             <td>{{i.start}}</td>
             <td>{{i.school}}</td>
-            {% for k, v in j.items %}
-            {%for grade in v.values%}
-            <td>{{grade}} балл</td>
-            {%endfor%}
-            {%endfor%}
+    
+            <td>{{j.grades}} балл</td>
+    
 
             {% if j.status %}
             <td style="color: blue;">Тексерілді</td>
@@ -210,7 +195,6 @@
       
 
           {%endfor%}
-
 
         </tbody>
       </table>
@@ -225,27 +209,21 @@
             <th scope="col">ФИО</th>
             <th scope="col">Дата</th>
             <th scope="col">Мектеп</th>
-            <th scope="col">Математика</th>
-            <th scope="col">Логика</th>
-            <th scope="col">Қазақ тілі</th>
-            <th scope="col">Жалпы</th>
-            <th scope="col">Статус7</th>
+            <th scope="col">Бағасы</th>
+            <th scope="col">Статус</th>
           </tr>
         </thead>
         <tbody>
-          
-          {%for i , j in dic.9.students.items %}
+          {%for i,j in dic.9.students.items %}
 
           <tr>
             <th scope="row">{{forloop.counter}}</th>
             <td><a href="{% url 'rate' i.id %}">{{i.user.first_name}}</a></td>
             <td>{{i.start}}</td>
             <td>{{i.school}}</td>
-            {% for k, v in j.items %}
-            {%for grade in v.values%}
-            <td>{{grade}} балл</td>
-            {%endfor%}
-            {%endfor%}
+    
+            <td>{{j.grades}} балл</td>
+    
 
             {% if j.status %}
             <td style="color: blue;">Тексерілді</td>
@@ -258,34 +236,10 @@
 
           {%endfor%}
 
-
         </tbody>
       </table>
   
   </div>
-
-  <!-- <table class="table table-hover">
-            <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">ФИО</th>
-                <th scope="col">Мектеп</th>
-                <th scope="col">Математика</th>
-                <th scope="col">Логика</th>
-                <th scope="col">Физика</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <a href="#"><td>Паленшиев Тугенше</td></a>
-                <td>148 мектеп-гимназия</td>
-                <td>0 балл</td>
-                <td>0 балл</td>
-                <td>0 балл</td>
-              </tr>
-            </tbody>
-          </table> -->
 
 </body>
 

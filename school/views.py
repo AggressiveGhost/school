@@ -31,8 +31,31 @@ def new(request):
     return render(request, 'school/new.html')
 
 
-def rate(request):
-    return render(request, 'school/rate.html')
+def rate(request, id):
+    print(id)
+    student = Student.objects.get(id = id)
+    teacher = Teacher.objects.get(teacher = request.user)
+    subject = teacher.subjects.get(grade = student.grade)
+    testing = Testing.objects.get(student = student, subject =  subject)
+
+    questions = Question.objects.filter(variant =testing.variant)
+
+    dic = {}
+
+    for i in questions:
+        if Answer.objects.filter(question = i, student = student).exists():
+            text = Answer.objects.filter(question = i, student = student)
+            dic[i] = text.first().answer
+
+    print(dic)
+
+    _dic = {
+        'student':student,
+        'dic':dic
+    }
+    print(_dic)
+
+    return render(request, 'school/rate.html', {'dic':_dic})
 
 
 def input(request):
@@ -427,67 +450,34 @@ def log_out(request):
     logout(request)
     return HttpResponseRedirect(reverse_lazy('moderator'))
     
-A = [ # 6[0] : user_id
-    'ФИО',
-    'Дата',
-    'Мектеп',
-    'Математика',
-    'Логика',
-    'Қазақ тілі',
-    'Жалпы',
-    'Статус'
-]
+def get_grades(student, teacher, subject):
 
-def get_review_grade(request,teacher, student):
     if Review.objects.filter(teacher = teacher, student = student).exists():
-        rev = Review.objects.filter(teacher = teacher, student = student)
-        return rev.first().grade
-    return 0
+        r = Review.objects.filter(teacher = teacher, student = student)
+        return (r.last().grade, r.last().status)
+    return (0, False)
 
-def get_review_status(request,teacher, student):
-    if Review.objects.filter(teacher = teacher, student = student).exists():
-        return True
-    return False
-        
-
-
-def get_grades(request,student):
-    subjects = Subject.objects.filter(grade = student.grade).order_by('subject')
-    dic = {}
-    total = int()
-
-    for i in subjects:
-        t = Teacher.objects.filter(subjects = i)
-        total += get_review_grade(request,t.first(), student)
-        dic[i.subject] = get_review_grade(request,t.first(), student)
-    dic['total'] = total
-
-    return dic
-
-def get_subjectList(grade):
-    subject = Subject.objects.filter(grade = grade).order_by('subject')
-    return subject
 
 
 def moderator_menu(request):
     if request.user.is_authenticated:
-        # global clas
         teacher = Teacher.objects.get(teacher = request.user)
 
         dic = {}
-        dic_student = {}
-        # all_students = []
-        for i in teacher.subjects.all().order_by('subject'):
+        dic_student = {}    
+        sb = teacher.subjects.all().order_by('subject')
+        for i in sb:
             students = Student.objects.filter(grade = i.grade)
             for j in students:
+                res = get_grades(j, teacher, i)
+                
                 dic_student[j] = {
-                    'grades' : get_grades(request,j),
-                    'status' : get_review_status(request, teacher, j)
+                    'grades' : res[0],
+                    'status' : res[1]
                 }
 
             dic[i.grade.grade] = {
-                'students' : dic_student,
-                'subjects' : get_subjectList(i.grade)
+                'students' : dic_student
             }
             dic_student = {}
         print(dic)
@@ -522,3 +512,4 @@ def save_grade(request, id):
     review = Review(teacher = teacher, student =student, grade = int(request.POST.get('result')), status = True)
     review.save()
     return HttpResponseRedirect(reverse_lazy('moderator_menu'))
+

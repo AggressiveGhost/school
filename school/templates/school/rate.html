@@ -37,12 +37,14 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#" style="color: white;">Сүйінәлі Нұржігіт<span
+                    {% if user.is_authenticated %}
+                    <a class="nav-link" href="#" style="color: white;">{{user.username}}<span
                             class="sr-only">(current)</span></a>
+                    {% endif %}
                 </li>
 
                 <li class="nav-item active">
-                    <a class="nav-link" href="#" style="color: rgb(240, 18, 18);">Математика<span
+                    <a class="nav-link" href="#" style="color: rgb(240, 18, 18);">ZHML-SYNAQ.KZ<span
                             class="sr-only">(current)</span></a>
                 </li>
 
@@ -59,115 +61,56 @@
             <thead>
                 <tr>
                     <th>ФИО</th>
-                    <th>Нұсқа</th>
-                    <th>Сынып</th>
                 </tr>
             </thead>
             <tbody>
                 <tr class="info">
-                    <td>Info</td>
-                    <td>Dooley</td>
-                    <td>july@example.com</td>
+                    <td>{{dic.student}}</td>
                 </tr>
             </tbody>
         </table>
 
-        <div class="card mb-3" style="max-width: 700px;">
-            <h5 class="card-title">1 сұрақ</h5>
-            <img src="{% static 'img/questions/task.JPG' %}" class="card-img-top" alt="">
+       
+        
+        
 
-            <div class="card-body">
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
-                    content. This content is a little bit longer.</p>
 
-                <div class="radio">
-                    <label><input type="radio" id="111" class="111" name="first" value="True"
-                            onclick="radio()">Дұрыс</label>
-                </div>
-                <div class="radio">
-                    <label><input type="radio" id="111" class="111" name="first" value="False"
-                            onclick="radio()">Қате</label>
-                </div>
+        
 
-            </div>
-
-        </div>
-
+        
         <!-- {% static 'img/questions/task.JPG' %} -->
+        {%for i,j in dic.dic.items %}
         <div class="card mb-3" style="max-width: 700px;">
-            <h5 class="card-title">2 сұрақ</h5>
-            <img src="{% static 'img/questions/task.JPG' %}" class="card-img-top" alt="">
+            <h5 class="card-title">{{forloop.counter}}</h5>
+            <img src="{{i.question.url}}" class="card-img-top" alt="" height="200px", width="300">
 
             <div class="card-body">
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
-                    content. This content is a little bit longer.</p>
+                <p class="card-text">{{j}}</p>
 
                 <div class="radio">
-                    <label><input type="radio" id="222" class="222" name="second" value="True"
+                    <label><input type="radio" id="222" class="222" name="{{i.id}}" value="True"
                             onclick="radio()">Дұрыс</label>
                 </div>
                 <div class="radio">
-                    <label><input type="radio" id="222" class="222" name="second" value="False"
+                    <label><input type="radio" id="222" class="222" name="{{i.id}}" value="False"
                             onclick="radio()">Қате</label>
                 </div>
 
             </div>
 
         </div>
+        {%endfor%}
 
-        <div class="card mb-3" style="max-width: 700px;">
-            <h5 class="card-title">2 сұрақ</h5>
-            <img src="{% static 'img/questions/task.JPG' %}" class="card-img-top" alt="">
-
-            <div class="card-body">
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
-                    content. This content is a little bit longer.</p>
-
-                <div class="radio">
-                    <label><input type="radio" id="222" class="222" name="third" value="True"
-                            onclick="radio()">Дұрыс</label>
-                </div>
-                <div class="radio">
-                    <label><input type="radio" id="222" class="222" name="third" value="False"
-                            onclick="radio()">Қате</label>
-                </div>
-
-            </div>
-
-        </div>
-
-        <div class="card mb-3" style="max-width: 700px;">
-            <h5 class="card-title">2 сұрақ</h5>
-            <img src="{% static 'img/questions/task.JPG' %}" class="card-img-top" alt="">
-
-            <div class="card-body">
-                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
-                    content. This content is a little bit longer.</p>
-
-                <div class="radio">
-                    <label><input type="radio" id="222" class="222" name="fourth" value="True"
-                            onclick="radio()">Дұрыс</label>
-                </div>
-                <div class="radio">
-                    <label><input type="radio" id="222" class="222" name="fourth" value="False"
-                            onclick="radio()">Қате</label>
-                </div>
-
-            </div>
-
-        </div>
-
-
-
-
-        <form action="">
+        <form method="POST" action="{% url 'save_grade' dic.student.id %}">{% csrf_token %}
             <div class="row">
-                <p>Word</p>
-                <button type="submit" onclick="window.open('file.doc')">Жүктеу!</button>
-                <label><input type="number" id="result" value="0"></label>
-                <button type="button" class="btn btn-primary">Бағалау</button>
+                <label><input type="number" id="result" name="result" value="0"></label>
+                <button type="submit-button" class="btn btn-primary">Бағалау</button>
             </div>
         </form>
+
+
+
+
 </body>
 
 <script>
