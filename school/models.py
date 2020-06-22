@@ -73,7 +73,7 @@ class Question(models.Model):
     variant = models.ForeignKey(Variant, on_delete=models.CASCADE)
 
     def __str__(self):
-        return '{0}сұрақ  {1} вариант'.format(self.id, variant)
+        return '{0}сұрақ  {1} вариант'.format(self.id, self.variant)
 
 
 class Answer(models.Model):
