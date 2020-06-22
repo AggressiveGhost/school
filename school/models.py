@@ -39,7 +39,7 @@ class Teacher(models.Model):
     subjects = models.ManyToManyField(Subject)
 
     def __str__(self):
-        return teacher.username
+        return str(self.teacher.username)
 
 
 
