@@ -490,7 +490,7 @@ def moderator_menu(request):
                 'subjects' : get_subjectList(i.grade)
             }
             dic_student = {}
-            
+        print(dic)
         return render(request, 'school/moderator.html',{'dic' : dic})
 
     return render(request, 'school/sign_moderator.html')
@@ -505,7 +505,7 @@ def moderator(request):
         password = request.POST.get('password')
 
         exists = User.objects.filter(username = username).exists()
-        
+        print(exists)
         if exists:
             moderator = authenticate(username = username, password = password)
             if moderator is not None:

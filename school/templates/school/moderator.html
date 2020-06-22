@@ -56,12 +56,8 @@
 
   <ul class="nav nav-tabs" id="myTab" role="tablist">
     <li class="nav-item" role="presentation">
-      <a class="nav-link active" id="home-tab" data-toggle="tab" href="#all" role="tab" aria-controls="home"
-        aria-selected="true">Все</a>
-    </li>
-    <li class="nav-item" role="presentation">
-      <a class="nav-link" id="profile-tab" data-toggle="tab" href="#h6" role="tab" aria-controls="profile"
-        aria-selected="false">6 сынып</a>
+      <a class="nav-link active" id="home-tab" data-toggle="tab" href="#h6" role="tab" aria-controls="home"
+        aria-selected="true">6 сынып</a>
     </li>
     <li class="nav-item" role="presentation">
       <a class="nav-link" id="profile-tab" data-toggle="tab" href="#h7" role="tab" aria-controls="profile"
@@ -75,16 +71,58 @@
       <a class="nav-link" id="contact-tab" data-toggle="tab" href="#h9" role="tab" aria-controls="contact"
         aria-selected="false">9 сынып</a>
     </li>
-    <li class="nav-item" role="presentation">
-      <a class="nav-link" id="contact-tab" data-toggle="tab" href="#h10" role="tab" aria-controls="contact"
-        aria-selected="false">10 сынып</a>
-    </li>
   </ul>
 
 
 
   <div class="tab-content" id="myTabContent">
-    <div class="tab-pane fade show active" id="all" role="tabpanel" aria-labelledby="home-tab">
+    <div class="tab-pane fade show active" id="h6" role="tabpanel" aria-labelledby="home-tab">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">ФИО</th>
+            <th scope="col">Дата</th>
+            <th scope="col">Мектеп</th>
+            <th scope="col">Логика</th>
+            <th scope="col">Математика</th>
+            <th scope="col">Қазақ тілі</th>
+            <th scope="col">Общий</th>
+            <th scope="col">Статус</th>
+          </tr>
+        </thead>
+        <tbody>
+          {%for i , j in dic.7.students.items %}
+
+          <tr>
+            <th scope="row">{{forloop.counter}}</th>
+            <td><a href="{% url 'rate' i.id %}">{{i.user.first_name}}</a></td>
+            <td>{{i.start}}</td>
+            <td>{{i.school}}</td>
+            {% for k, v in j.items %}
+            {%for grade in v.values%}
+            <td>{{grade}} балл</td>
+            {%endfor%}
+            {%endfor%}
+
+            {% if j.status %}
+            <td style="color: blue;">Тексерілді</td>
+            {% else %}
+            <td style="color: red;">Тексерілмеді</td>
+            {% endif %}
+          </tr>
+
+      
+
+          {%endfor%}
+
+        </tbody>
+      </table>
+    </div>
+  
+  
+    <div class="tab-pane fade" id="h7" role="tabpanel" aria-labelledby="contact-tab">
+
       <table class="table table-hover">
         <thead>
           <tr>
@@ -94,45 +132,136 @@
             <th scope="col">Мектеп</th>
             <th scope="col">Математика</th>
             <th scope="col">Логика</th>
-            <th scope="col">Физика</th>
-            <th scope="col">Общий</th>
-            <th scope="col">Статус</th>
+            <th scope="col">Қазақ тілі</th>
+            <th scope="col">Жалпы</th>
+            <th scope="col">Статус7</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td><a href="www.google.com">Паленшиев Тугенше</a></td>
-            <td>06.08.2020</td>
-            <td>148 мектеп-гимназия</td>
-            <td>0 балл</td>
-            <td>0 балл</td>
-            <td>0 балл</td>
-            <td>0 балл</td>
-            <td style="color: red;">Тексерілді</td>
-          </tr>
+          
+          {%for i , j in dic.7.students.items %}
 
           <tr>
-            <th scope="row">2</th>
-            <td><a href="www.google.com">Паленбай Түгенбай</a></td>
-            <td>06.08.2020</td>
-            <td>148 мектеп-гимназия</td>
-            <td>0 балл</td>
-            <td>0 балл</td>
-            <td>0 балл</td>
-            <td>0 балл</td>
-            <td style="color: rgb(37, 61, 194);">Тексерілмеді</td>
+            <th scope="row">{{forloop.counter}}</th>
+            <td><a href="{% url 'rate' i.id %}">{{i.user.first_name}}</a></td>
+            <td>{{i.start}}</td>
+            <td>{{i.school}}</td>
+            {% for k, v in j.items %}
+            {%for grade in v.values%}
+            <td>{{grade}} балл</td>
+            {%endfor%}
+            {%endfor%}
+
+            {% if j.status %}
+            <td style="color: blue;">Тексерілді</td>
+            {% else %}
+            <td style="color: red;">Тексерілмеді</td>
+            {% endif %}
           </tr>
+
+      
+
+          {%endfor%}
+
+
+        </tbody>
+      </table>
+
+    </div>
+
+
+    <div class="tab-pane fade" id="h8" role="tabpanel" aria-labelledby="contact-tab">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">ФИО</th>
+            <th scope="col">Дата</th>
+            <th scope="col">Мектеп</th>
+            <th scope="col">Математика</th>
+            <th scope="col">Логика</th>
+            <th scope="col">Қазақ тілі</th>
+            <th scope="col">Жалпы</th>
+            <th scope="col">Статус7</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+          {%for i , j in dic.8.students.items %}
+
+          <tr>
+            <th scope="row">{{forloop.counter}}</th>
+            <td><a href="{% url 'rate' i.id %}">{{i.user.first_name}}</a></td>
+            <td>{{i.start}}</td>
+            <td>{{i.school}}</td>
+            {% for k, v in j.items %}
+            {%for grade in v.values%}
+            <td>{{grade}} балл</td>
+            {%endfor%}
+            {%endfor%}
+
+            {% if j.status %}
+            <td style="color: blue;">Тексерілді</td>
+            {% else %}
+            <td style="color: red;">Тексерілмеді</td>
+            {% endif %}
+          </tr>
+
+      
+
+          {%endfor%}
 
 
         </tbody>
       </table>
     </div>
-    <div class="tab-pane fade" id="h6" role="tabpanel" aria-labelledby="profile-tab">6</div>
-    <div class="tab-pane fade" id="h7" role="tabpanel" aria-labelledby="contact-tab">7</div>
-    <div class="tab-pane fade" id="h8" role="tabpanel" aria-labelledby="contact-tab">8</div>
-    <div class="tab-pane fade" id="h9" role="tabpanel" aria-labelledby="contact-tab">9</div>
-    <div class="tab-pane fade" id="h10" role="tabpanel" aria-labelledby="contact-tab">10</div>
+
+
+    <div class="tab-pane fade" id="h9" role="tabpanel" aria-labelledby="contact-tab">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">ФИО</th>
+            <th scope="col">Дата</th>
+            <th scope="col">Мектеп</th>
+            <th scope="col">Математика</th>
+            <th scope="col">Логика</th>
+            <th scope="col">Қазақ тілі</th>
+            <th scope="col">Жалпы</th>
+            <th scope="col">Статус7</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+          {%for i , j in dic.9.students.items %}
+
+          <tr>
+            <th scope="row">{{forloop.counter}}</th>
+            <td><a href="{% url 'rate' i.id %}">{{i.user.first_name}}</a></td>
+            <td>{{i.start}}</td>
+            <td>{{i.school}}</td>
+            {% for k, v in j.items %}
+            {%for grade in v.values%}
+            <td>{{grade}} балл</td>
+            {%endfor%}
+            {%endfor%}
+
+            {% if j.status %}
+            <td style="color: blue;">Тексерілді</td>
+            {% else %}
+            <td style="color: red;">Тексерілмеді</td>
+            {% endif %}
+          </tr>
+
+      
+
+          {%endfor%}
+
+
+        </tbody>
+      </table>
+  
   </div>
 
   <!-- <table class="table table-hover">

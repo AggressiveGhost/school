@@ -38,6 +38,7 @@ urlpatterns = [
     path('serial_answers',  views.serial_answers,   name='serial_answers'),
     path('create_test',     views.create_test,      name='create_test'),
     path('moderator',       views.moderator,         name='moderator'),
+    path('moderator_menu',  views.moderator_menu,    name = 'moderator_menu'),
     path('testing_page/<grade>/<student>',
          views.testing_page,     name='testing_page'),
     path('deadline',    views.deadline,     name="deadline"),
