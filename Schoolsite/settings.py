@@ -78,24 +78,24 @@ WSGI_APPLICATION = 'Schoolsite.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
-
 # DATABASES = {
 #     'default': {
-#         # 'ENGINE'    : 'django.db.backends.postgresql',
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': 'osupinyu',
-#         'USER': 'osupinyu',
-#         'PASSWORD': 'hHO6x4zdTJGzJ-DO1Sw0GEhhUYNa7anx',
-#         'HOST': 'rogue.db.elephantsql.com',
-#         'PORT': '5432'
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
 #     }
 # }
+
+DATABASES = {
+    'default': {
+        # 'ENGINE'    : 'django.db.backends.postgresql',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'xgnrjxwo',
+        'USER': 'xgnrjxwo',
+        'PASSWORD': 'GT9jy1pbqBtdLjqHkcJrkCX-iBueay4f',
+        'HOST': 'ruby.db.elephantsql.com',
+        'PORT': '5432'
+    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
