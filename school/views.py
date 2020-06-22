@@ -422,5 +422,103 @@ def create_test(request):
     question.save()
 
 
+
+def log_out(request):
+    logout(request)
+    return HttpResponseRedirect(reverse_lazy('moderator'))
+    
+A = [ # 6[0] : user_id
+    'ФИО',
+    'Дата',
+    'Мектеп',
+    'Математика',
+    'Логика',
+    'Қазақ тілі',
+    'Жалпы',
+    'Статус'
+]
+
+def get_review_grade(request,teacher, student):
+    if Review.objects.filter(teacher = teacher, student = student).exists():
+        rev = Review.objects.filter(teacher = teacher, student = student)
+        return rev.first().grade
+    return 0
+
+def get_review_status(request,teacher, student):
+    if Review.objects.filter(teacher = teacher, student = student).exists():
+        return True
+    return False
+        
+
+
+def get_grades(request,student):
+    subjects = Subject.objects.filter(grade = student.grade).order_by('subject')
+    dic = {}
+    total = int()
+
+    for i in subjects:
+        t = Teacher.objects.filter(subjects = i)
+        total += get_review_grade(request,t.first(), student)
+        dic[i.subject] = get_review_grade(request,t.first(), student)
+    dic['total'] = total
+
+    return dic
+
+def get_subjectList(grade):
+    subject = Subject.objects.filter(grade = grade).order_by('subject')
+    return subject
+
+
+def moderator_menu(request):
+    if request.user.is_authenticated:
+        # global clas
+        teacher = Teacher.objects.get(teacher = request.user)
+
+        dic = {}
+        dic_student = {}
+        # all_students = []
+        for i in teacher.subjects.all().order_by('subject'):
+            students = Student.objects.filter(grade = i.grade)
+            for j in students:
+                dic_student[j] = {
+                    'grades' : get_grades(request,j),
+                    'status' : get_review_status(request, teacher, j)
+                }
+
+            dic[i.grade.grade] = {
+                'students' : dic_student,
+                'subjects' : get_subjectList(i.grade)
+            }
+            dic_student = {}
+            
+        return render(request, 'school/moderator.html',{'dic' : dic})
+
+    return render(request, 'school/sign_moderator.html')
+
+
+
+
 def moderator(request):
-    return render(request, 'school/moderator.html')
+    if request.POST:
+    
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        exists = User.objects.filter(username = username).exists()
+        
+        if exists:
+            moderator = authenticate(username = username, password = password)
+            if moderator is not None:
+                login(request, moderator)
+                return HttpResponseRedirect(reverse_lazy('moderator_menu'))
+    return render(request, 'school/sign_moderator.html')
+
+
+
+
+def save_grade(request, id):
+    student = Student.objects.get(id = id)
+    teacher = Teacher.objects.get(teacher = request.user)
+    review = Review(teacher = teacher, student =student, grade = int(request.POST.get('result')), status = True)
+    review.save()
+    return HttpResponseRedirect(reverse_lazy('moderator_menu'))

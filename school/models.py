@@ -35,10 +35,11 @@ class Variant(models.Model):
 
 
 class Teacher(models.Model):
-    teacher = models.ManyToManyField(User)
+    teacher = models.ForeignKey(User, on_delete=models.CASCADE)
+    subjects = models.ManyToManyField(Subject)
 
     def __str__(self):
-        return 'teacher'
+        return teacher.username
 
 
 
