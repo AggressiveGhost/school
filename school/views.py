@@ -298,7 +298,7 @@ def testing_page(request, grade, student):
                 print("sameeee2")
 
         variant = Testing.objects.filter(
-            student=student, subject=selected_subject).get().variant
+            student=student, subject=selected_subject).get().variant.id
         print(variant)
         # return reverse('pagination_p', kwargs={'subject': selected_subject})
         return HttpResponseRedirect(reverse_lazy('pagination_p', kwargs={'student': student, 'grade': grade, 'variant_of_subject': variant}))
