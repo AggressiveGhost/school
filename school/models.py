@@ -27,7 +27,8 @@ class Variant(models.Model):
     subject = models.ForeignKey(Subject, on_delete=models.CASCADE)
 
     def __str__(self):
-        return str(self.id)
+        return '{0} {1}'.format(self.subject.subject, variant)
+        # return str(self.id)
 
     def get_absolute_url(self):
         return reverse('pagination_p', kwargs={'variant_of_subject': self.id})
