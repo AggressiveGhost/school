@@ -18,7 +18,8 @@ class Subject(models.Model):
     grade = models.ForeignKey(Grade, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.subject
+        return '{0} {1}'.format(self.subject, self.grade.grade)
+        # return self.subject
 
 
 class Variant(models.Model):
