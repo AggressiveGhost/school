@@ -27,7 +27,7 @@ class Variant(models.Model):
     subject = models.ForeignKey(Subject, on_delete=models.CASCADE)
 
     def __str__(self):
-        return '{0} {1}'.format(self.subject, self.variant)
+        return '{0} {1} -- [{2}]'.format(self.subject, self.variant, self.id)
         # return str(self.id)
 
     def get_absolute_url(self):
