@@ -449,7 +449,10 @@ def create_test(request):
 
 
 def log_out(request):
-    logout(request)
+    try:
+        logout(request)
+    except :
+        pass
     return HttpResponseRedirect(reverse_lazy('index'))
     
 def get_grades(student, teacher, subject):
