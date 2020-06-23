@@ -10,7 +10,7 @@ import datetime
 from django.utils import timezone
 from django.utils.timezone import utc
 from django.contrib.auth.models import User, AbstractUser
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 
 
 # Create your views here.
@@ -51,7 +51,7 @@ def rate(request, id):
     print(dic)
 
     _dic = {
-        'student':student.user.first_name,
+        'student':student,
         'dic':dic,
         'variant':variant.variant.variant
     }
