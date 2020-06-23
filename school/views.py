@@ -53,7 +53,7 @@ def rate(request, id):
     _dic = {
         'student':student,
         'dic':dic,
-        'variant':variant.variant
+        'variant':variant.variant.variant
     }
     print(_dic)
 
