@@ -51,7 +51,7 @@ def rate(request, id):
     print(dic)
 
     _dic = {
-        'student':student,
+        'student':student.user.first_name,
         'dic':dic,
         'variant':variant.variant.variant
     }
@@ -450,7 +450,7 @@ def create_test(request):
 
 def log_out(request):
     logout(request)
-    return HttpResponseRedirect(reverse_lazy('moderator'))
+    return HttpResponseRedirect(reverse_lazy('index'))
     
 def get_grades(student, teacher, subject):
 
