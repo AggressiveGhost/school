@@ -27,4 +27,5 @@ urlpatterns = [
     path('sign_in_test', views.sign_in_test, name='sign_in_test'),
     path('create_user',     views.create_user,      name='create_user'),
     path('save_grade/<id>',      views.save_grade,           name  = 'save_grade'),
+    path('log_out',      views.log_out, name = 'log_out')
 ]
