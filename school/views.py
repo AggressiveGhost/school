@@ -37,6 +37,7 @@ def rate(request, id):
     teacher = Teacher.objects.get(teacher = request.user)
     subject = teacher.subjects.get(grade = student.grade)
     testing = Testing.objects.get(student = student, subject =  subject)
+    variant = Variant.objects.get(subject = subject)
 
     questions = Question.objects.filter(variant =testing.variant)
 
@@ -51,7 +52,8 @@ def rate(request, id):
 
     _dic = {
         'student':student,
-        'dic':dic
+        'dic':dic,
+        'variant':variant.variant
     }
     print(_dic)
 
